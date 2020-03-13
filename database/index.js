@@ -1,6 +1,10 @@
 /* eslint-disable no-shadow */
 const mysql = require('mysql2');
-const data = require('./mockData');
+const { mockName } = require('./mockData');
+const { mockPrice } = require('./mockData');
+const { mockService } = require('./mockData');
+const { mockCleaning } = require('./mockData');
+
 // Create a database connection and export it from this file.
 // You will need to connect with the user "root", no password,
 // and to the database "chat".
@@ -14,7 +18,7 @@ dbConnection.connect(err => {
     throw err;
   }
   // eslint-disable-next-line no-console
-  dbConnection.query('CREATE DATABASE availability;', err => {
+  dbConnection.query('CREATE DATABASE IF NOT EXISTS availability;', err => {
     if (err) throw err;
   });
 
@@ -23,21 +27,27 @@ dbConnection.connect(err => {
   });
 
   dbConnection.query(
-    'CREATE TABLE Location (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name varchar(45))',
+    'CREATE TABLE IF NOT EXISTS Location (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name varchar(45), price INT, cleaning_fee INT, service_fee INT)',
     err => {
       if (err) throw err;
     }
   );
 
   dbConnection.query(
-    'CREATE TABLE Dates (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, date DATE)',
+    'CREATE TABLE IF NOT EXISTS Dates (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, date DATE)',
     err => {
       if (err) throw err;
     }
   );
 
-  data.forEach(loc => {
-    dbConnection.query(`INSERT INTO Location (name) VALUES ('${loc}')`);
+  mockName.forEach((loc, index) => {
+    dbConnection.query(
+      `INSERT INTO Location (name, price, cleaning_fee, service_fee) VALUES ('${loc}', ${mockPrice[index]}, ${mockService[index]}, ${mockCleaning[index]})`
+    );
+  });
+
+  dbConnection.query(`DROP PROCEDURE IF EXISTS fill_calendar;`, err => {
+    if (err) throw err;
   });
 
   dbConnection.query(
@@ -52,7 +62,7 @@ dbConnection.connect(err => {
   });
 
   dbConnection.query(
-    `CREATE TABLE Location_Dates (
+    `CREATE TABLE IF NOT EXISTS Location_Dates (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Location_id INT REFERENCES Location(id),
     Dates_id INT REFERENCES Dates(id)
@@ -62,4 +72,5 @@ dbConnection.connect(err => {
     }
   );
 });
+
 module.exports = dbConnection;
