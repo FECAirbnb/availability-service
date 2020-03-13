@@ -1,4 +1,4 @@
-const mockLocation = [
+const mockName = [
   'Bora bora',
   'Texas',
   'Little House On the Prarie',
@@ -19,4 +19,70 @@ const mockLocation = [
   'Phoenix'
 ];
 
-module.exports = mockLocation;
+const mockPrice = [
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100
+];
+
+const mockCleaning = [
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100
+];
+const mockService = [
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100,
+  100
+];
+module.exports = {
+  mockName,
+  mockCleaning,
+  mockPrice,
+  mockService
+};
