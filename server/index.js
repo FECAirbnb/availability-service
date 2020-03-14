@@ -23,4 +23,23 @@ app.get('/api/reserve/:locationId', (req, res) => {
   );
 });
 
+app.get(`/api/reserve/dates/:check:out`, (req, res) => {
+  const dates = req.params.out.split(':');
+  const startDate = dates[0];
+  const endDate = dates[1];
+  db.query(
+    `SELECT * FROM Dates WHERE date BETWEEN '${startDate}' and '${endDate}'`,
+    (err, data) => {
+      if (err) throw err;
+
+      res.json(data);
+    }
+  );
+});
+
+app.post('/api/reserve/book/:bookDates', (req, res) => {
+  console.log(req.params);
+  res.end();
+});
+
 app.listen(port);

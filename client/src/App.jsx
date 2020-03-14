@@ -31,10 +31,23 @@ class App extends React.Component {
   }
 
   bookDates() {
-    const checkIn = document.getElementById('check-in');
-    const checkOut = document.getElementById('check-out');
+    const checkIn = document.getElementById('check-in').value;
+    const checkOut = document.getElementById('check-out').value;
+    axios
+      .get(`/api/reserve/dates/:${checkIn}:${checkOut}`)
+      .then(result => {
+        return result.data;
+      })
+      .then(dates => {
+        axios.post(`/api/reserve/book/:${dates}`).then(result => {
+          console.log(result);
+        });
+      })
+      .catch(err => {
+        throw err;
+      });
 
-    console.log(`${checkOut.value} and ${checkIn.value}`);
+    console.log(`${checkOut} and ${checkIn}`);
   }
 
   renderView() {
