@@ -1,11 +1,14 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 
-const Reserve = ({ loc }) => {
+const Reserve = props => {
   return (
     <div className="reserve">
       <div>
-        <span className="price">${loc.price}</span>
+        <span className="price">${props.loc.price}</span>
         <span className="per-night"> per night</span>
       </div>
       <div>
@@ -32,7 +35,9 @@ const Reserve = ({ loc }) => {
         </div>
       </div>
       <div>
-        <button id="reserve-btn">RESERVE</button>
+        <button id="reserve-btn" type="submit" onClick={props.onClick}>
+          RESERVE
+        </button>
       </div>
     </div>
   );
