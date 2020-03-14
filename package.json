@@ -10,7 +10,8 @@
   "scripts": {
     "eslint-check": "eslint --print-config path/to/main.js | eslint-config-prettier-check",
     "start": "nodemon ./server/index.js",
-    "react-dev": "webpack -d --watch"
+    "react-dev": "webpack -d --watch",
+    "db:setup": "node ./database/createTables.js"
   },
   "dependencies": {
     "axios": "^0.19.2",

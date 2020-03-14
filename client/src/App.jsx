@@ -1,32 +1,41 @@
+/* eslint-disable import/extensions */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
 import axios from 'axios';
+import Reserve from './components/Reserve.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // eslint-disable-next-line react/no-unused-state
-      data: ''
+      data: null
     };
   }
 
   componentDidMount() {
-    axios.get('/hi').then(result => {});
-    // $.ajax({
-    //   type: 'GET',
-    //   url: '/hi',
-    //   ContentType: 'application/json',
-    //   success: result => {
-    //     console.log(result);
-    //   }
-    // });
+    axios
+      .get('/hi')
+      .then(result => {
+        this.setState({
+          data: result.data[0]
+        });
+      })
+      .catch(err => {
+        throw err;
+      });
+  }
+
+  renderView() {
+    if (this.state.data === null) {
+      return <div> No locations </div>;
+    }
+    return <Reserve loc={this.state.data} />;
   }
 
   render() {
-    return <div>hello world!</div>;
+    return <div className="main">{this.renderView()}</div>;
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('reserve'));
