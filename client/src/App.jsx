@@ -11,14 +11,15 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null
+      data: null,
+      locationId: 1
     };
     this.bookDates = this.bookDates.bind(this);
   }
 
   componentDidMount() {
     axios
-      .get('/hi')
+      .get(`/api/reserve/${this.state.locationId}`)
       .then(result => {
         this.setState({
           data: result.data[0]

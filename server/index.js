@@ -11,15 +11,16 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(express.urlencoded({ extended: true }));
 db.query(`USE availability;`);
 
-app.get('/hi', (req, res) => {
+app.get('/api/reserve/:locationId', (req, res) => {
+  const { locationId } = req.params;
   db.query(
-    `SELECT * FROM Location, Dates, Location_Dates WHERE Location_Dates.Location_id = Location.id AND Location_Dates.Dates_id = Dates.id`,
+    `SELECT * FROM Location, Dates, Location_Dates WHERE Location_Dates.Location_id = Location.id AND Location_Dates.Dates_id = Dates.id AND Location.id = ${locationId};`,
     (err, data) => {
       if (err) throw err;
-      console.log(data);
+
       res.json(data);
     }
   );
 });
 
-app.listen(port, () => console.log(`listening on port ${port}!`));
+app.listen(port);
