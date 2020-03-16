@@ -40,7 +40,7 @@ app.get(`/api/reserve/dates/:check:out`, (req, res) => {
 
 app.post('/api/reserve/book/:locationId', (req, res) => {
   const selectedDates = req.body.dates;
-  const locationId = req.body.locationId;
+  const { locationId } = req.body;
   // const { locationId } = req.params;
   selectedDates.forEach(date => {
     db.query(

@@ -54,7 +54,7 @@ class App extends React.Component {
         return result.data;
       })
       .then(dates => {
-        const locationId = this.state.locationId;
+        const { locationId } = this.state;
         axios.post(`/api/reserve/book/${this.state.locationId}`, {
           dates,
           locationId
