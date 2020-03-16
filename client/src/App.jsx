@@ -23,7 +23,7 @@ class App extends React.Component {
       .get(`/api/reserve/${this.state.locationId}`)
       .then(result => {
         this.setState({
-          data: result.data[0]
+          data: result.data
         });
       })
       .catch(err => {

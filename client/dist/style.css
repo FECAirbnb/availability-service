@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:600|Ubuntu:400,700&display=swap');
+
+.root {
+  display: block;
+}
+
+.reserve {
+  width: 100%;
+  height: 100%;
+  border: solid black;
+  padding: 5px;
+  padding-right: 5px;
+  border-width: thin;
+}
+.dropbtn {
+  background-color: white;
+  color: black;
+  /* padding: 16px; */
+  font-size: 16px;
+  border: none;
+}
+
+.down-arrow {
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  flex: auto;
+  text-align-last: end;
+}
+
+.dropdown {
+  border: solid black;
+  border-width: thin;
+  width: -webkit-fill-available;
+  display: flex;
+
+  padding: 10px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: white;
+}
+
+#reserve-btn {
+  border-radius: 5px;
+  box-shadow: var(--shadow-button-level0-box-shadow, none) !important;
+  color: #ffffff !important;
+  background-color: lightcoral;
+  font-weight: var(--font-bold-font-weight, 800) !important;
+  width: -webkit-fill-available;
+  height: 30px;
+  margin-top: 5px;
+  font-size: var(--font-button-font-size, 16px) !important;
+}
+
+.price {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.per-night {
+  font-size: 13px;
+  font-family: sans-serif;
+  font-weight: 100;
+}
