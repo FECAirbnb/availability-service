@@ -15,6 +15,7 @@ class App extends React.Component {
       locationId: 1
     };
     this.bookDates = this.bookDates.bind(this);
+    this.updateState = this.updateState.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +31,20 @@ class App extends React.Component {
       });
   }
 
+  updateState() {
+    axios
+      .get(`/api/reserve/${this.state.locationId}`)
+      .then(result => {
+        console.log(result);
+        // this.setState({
+        //   data: result.data[0]
+        // });
+      })
+      .catch(err => {
+        throw err;
+      });
+  }
+
   bookDates() {
     const checkIn = document.getElementById('check-in').value;
     const checkOut = document.getElementById('check-out').value;
@@ -39,15 +54,16 @@ class App extends React.Component {
         return result.data;
       })
       .then(dates => {
-        axios.post(`/api/reserve/book/:${dates}`).then(result => {
-          console.log(result);
+        const locationId = this.state.locationId;
+        axios.post(`/api/reserve/book/${this.state.locationId}`, {
+          dates,
+          locationId
         });
       })
       .catch(err => {
         throw err;
       });
-
-    console.log(`${checkOut} and ${checkIn}`);
+    this.updateState();
   }
 
   renderView() {

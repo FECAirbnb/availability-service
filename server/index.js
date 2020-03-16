@@ -9,6 +9,7 @@ const port = 3002;
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 db.query(`USE availability;`);
 
 app.get('/api/reserve/:locationId', (req, res) => {
@@ -32,13 +33,20 @@ app.get(`/api/reserve/dates/:check:out`, (req, res) => {
     (err, data) => {
       if (err) throw err;
 
-      res.json(data);
+      res.send(data);
     }
   );
 });
 
-app.post('/api/reserve/book/:bookDates', (req, res) => {
-  console.log(req.params);
+app.post('/api/reserve/book/:locationId', (req, res) => {
+  const selectedDates = req.body.dates;
+  const locationId = req.body.locationId;
+  // const { locationId } = req.params;
+  selectedDates.forEach(date => {
+    db.query(
+      `INSERT INTO Location_Dates (Location_id, Dates_id) VALUES (${locationId}, ${date.id})`
+    );
+  });
   res.end();
 });
 
