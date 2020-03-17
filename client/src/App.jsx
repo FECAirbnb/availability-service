@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 /* eslint-disable no-console */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable import/extensions */
@@ -36,9 +37,9 @@ class App extends React.Component {
       .get(`/api/reserve/${this.state.locationId}`)
       .then(result => {
         console.log(result);
-        // this.setState({
-        //   data: result.data[0]
-        // });
+        this.setState({
+          data: result.data
+        });
       })
       .catch(err => {
         throw err;
@@ -70,7 +71,11 @@ class App extends React.Component {
     if (this.state.data === null) {
       return <div> No locations </div>;
     }
-    return <Reserve loc={this.state.data} onClick={this.bookDates} />;
+    return (
+      <div>
+        <Reserve loc={this.state.data} onClick={this.bookDates} state={this.state} />
+      </div>
+    );
   }
 
   render() {
