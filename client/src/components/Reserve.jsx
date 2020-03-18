@@ -24,6 +24,7 @@ class Reserve extends React.Component {
     this.handleDropdownClick = this.handleDropdownClick.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleStatechange = this.handleStatechange.bind(this);
   }
 
   componentDidMount() {
@@ -60,6 +61,15 @@ class Reserve extends React.Component {
         checkOut: date
       });
     }
+  }
+
+  handleStatechange() {
+    this.setState({
+      open: false,
+      checkIn: 'Check in',
+      checkOut: 'Check out'
+    });
+    this.props.onClick();
   }
 
   render() {
@@ -101,7 +111,7 @@ class Reserve extends React.Component {
           </div>
         </div>
         <div>
-          <button id="reserve-btn" type="submit" onClick={this.props.onClick}>
+          <button id="reserve-btn" type="submit" onClick={this.handleStatechange}>
             RESERVE
           </button>
         </div>
