@@ -25,9 +25,11 @@ app.get('/api/reserve/:locationId', (req, res) => {
 });
 
 app.get(`/api/reserve/dates/:check:out`, (req, res) => {
-  const dates = req.params.out.split(':');
-  const startDate = dates[0];
-  const endDate = dates[1];
+  const firstDates = req.params.out.split('T');
+  const secondDate = firstDates[1].split(':');
+
+  const startDate = firstDates[0];
+  const endDate = secondDate[3];
   db.query(
     `SELECT * FROM Dates WHERE date BETWEEN '${startDate}' and '${endDate}'`,
     (err, data) => {
@@ -44,7 +46,7 @@ app.post('/api/reserve/book/:locationId', (req, res) => {
   // const { locationId } = req.params;
   selectedDates.forEach(date => {
     db.query(
-      `INSERT INTO Location_Dates (Location_id, Dates_id) VALUES (${locationId}, ${date.id})`
+      `REPLACE INTO Location_Dates (Location_id, Dates_id) VALUES (${locationId}, ${date.id})`
     );
   });
   res.end();

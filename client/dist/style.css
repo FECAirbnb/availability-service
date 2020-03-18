@@ -20,14 +20,14 @@
   border: none;
 }
 
-.check-in {
+#check-in {
   text-align-last: left;
   padding: 20px;
   font-size: 30px;
   flex: auto;
 }
 
-.check-out {
+#check-out {
   padding: 20px;
   font-size: 30px;
   text-align: center;

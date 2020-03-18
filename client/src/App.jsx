@@ -36,7 +36,6 @@ class App extends React.Component {
     axios
       .get(`/api/reserve/${this.state.locationId}`)
       .then(result => {
-        console.log(result);
         this.setState({
           data: result.data
         });
@@ -47,10 +46,15 @@ class App extends React.Component {
   }
 
   bookDates() {
-    const checkIn = document.getElementById('check-in').value;
-    const checkOut = document.getElementById('check-out').value;
+    const checkIn = document.getElementById('check-in').textContent;
+    const checkOut = document.getElementById('check-out').innerText;
+    let checkInDate = new Date(checkIn);
+    let checkOutDate = new Date(checkOut);
+
+    checkInDate = checkInDate.toISOString();
+    checkOutDate = checkOutDate.toISOString();
     axios
-      .get(`/api/reserve/dates/:${checkIn}:${checkOut}`)
+      .get(`/api/reserve/dates/:${checkInDate}:${checkOutDate}`)
       .then(result => {
         return result.data;
       })

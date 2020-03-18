@@ -1,3 +1,6 @@
+/* eslint-disable no-empty */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-plusplus */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -5,7 +8,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import {
-  compareAsc,
   format,
   startOfWeek,
   addDays,
@@ -37,6 +39,10 @@ class Calendar extends React.Component {
     this.setState({
       selectedDate: date.toISOString()
     });
+
+    const changeFormat = date.toLocaleDateString();
+
+    this.props.handleDateChange(changeFormat);
   }
 
   prevMonth() {
@@ -109,19 +115,40 @@ class Calendar extends React.Component {
     let days = [];
     let day = startDate;
     let formattedDate = '';
+    let nameClass = '';
 
     while (day <= endDate) {
       for (let i = 0; i < 7; i++) {
         formattedDate = format(day, dateFormat);
         const cloneDay = day;
+
+        // if (this.props.state) {
+        //   this.props.state.data.forEach(date => {
+        //     const newDate = new Date(date.date);
+
+        //     if (newDate === cloneDay) {
+        //       nameClass = 'disabled';
+        //     }
+        //   });
+        // }
+        // if (!isSameMonth(day, monthStart)) {
+        //   nameClass = 'disabled';
+        // }
+        // if (isSameDay(day, selectedDate)) {
+        //   nameClass = 'selected';
+        // }
+
         days.push(
           <button
             type="button"
             className={`col cell ${
-              !isSameMonth(day, monthStart)
-                ? 'disabled'
-                : isSameDay(day, selectedDate)
-                ? 'selected'
+              // nameClass
+              this.props.state
+                ? !isSameMonth(day, monthStart)
+                  ? 'disabled'
+                  : isSameDay(day, selectedDate)
+                  ? 'selected'
+                  : ''
                 : ''
             }`}
             key={day}
@@ -132,6 +159,20 @@ class Calendar extends React.Component {
             <span className="bg">{formattedDate}</span>
           </button>
         );
+        // if (this.props.state) {
+        //   this.props.state.data.forEach(date => {
+        //     const newDate = new Date(date.date);
+        //     if (newDate === cloneDay) {
+        //       nameClass = 'disabled';
+        //     }
+        //   });
+        // }
+        // if (!isSameMonth(day, monthStart)) {
+        //   nameClass = 'disabled';
+        // }
+        // if (isSameDay(day, selectedDate)) {
+        //   nameClass = 'selected';
+        // }
         day = addDays(day, 1);
       }
       rows.push(

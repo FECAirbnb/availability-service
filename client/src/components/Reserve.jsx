@@ -14,10 +14,24 @@ import Calendar from './Calendar.jsx';
 class Reserve extends React.Component {
   constructor(props) {
     super(props);
+    this.container = React.createRef();
     this.state = {
-      open: false
+      open: false,
+      checkIn: 'Check in',
+      checkOut: 'Check out'
     };
+
     this.handleDropdownClick = this.handleDropdownClick.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleOutsideClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleOutsideClick);
   }
 
   handleDropdownClick() {
@@ -28,9 +42,29 @@ class Reserve extends React.Component {
     });
   }
 
+  handleOutsideClick(e) {
+    if (this.container.current && !this.container.current.contains(e.target)) {
+      this.setState({
+        open: false
+      });
+    }
+  }
+
+  handleDateChange(date) {
+    if (this.state.checkIn === 'Check in') {
+      this.setState({
+        checkIn: date
+      });
+    } else {
+      this.setState({
+        checkOut: date
+      });
+    }
+  }
+
   render() {
     return (
-      <div className="reserve">
+      <div className="reserve" ref={this.container}>
         <div>
           <span className="price">${this.props.state.data[0].price}</span>
           <span className="per-night"> per night</span>
@@ -42,17 +76,19 @@ class Reserve extends React.Component {
           <span className="per-night">(6 reviews)</span>
         </div>
         <div className="date-picker">
-          <div className="check-in" onClick={this.handleDropdownClick}>
-            Check in
+          <div id="check-in" onClick={this.handleDropdownClick}>
+            {this.state.checkIn}
           </div>
 
-          <div className="check-out">Check out</div>
+          <div id="check-out" onClick={this.handleDropdownClick}>
+            {this.state.checkOut}
+          </div>
           <div className="dropdown-content"></div>
         </div>
         <div>
           {this.state.open && (
             <div className="dropdown">
-              <Calendar />
+              <Calendar state={this.props.state} handleDateChange={this.handleDateChange} />
             </div>
           )}
         </div>
