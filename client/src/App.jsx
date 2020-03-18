@@ -1,3 +1,6 @@
+/* eslint-disable react/no-unused-state */
+/* eslint-disable no-console */
+/* eslint-disable class-methods-use-this */
 /* eslint-disable import/extensions */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
@@ -9,16 +12,19 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null
+      data: null,
+      locationId: 1
     };
+    this.bookDates = this.bookDates.bind(this);
+    this.updateState = this.updateState.bind(this);
   }
 
   componentDidMount() {
     axios
-      .get('/hi')
+      .get(`/api/reserve/${this.state.locationId}`)
       .then(result => {
         this.setState({
-          data: result.data[0]
+          data: result.data
         });
       })
       .catch(err => {
@@ -26,11 +32,54 @@ class App extends React.Component {
       });
   }
 
+  updateState() {
+    axios
+      .get(`/api/reserve/${this.state.locationId}`)
+      .then(result => {
+        this.setState({
+          data: result.data
+        });
+      })
+      .catch(err => {
+        throw err;
+      });
+  }
+
+  bookDates() {
+    const checkIn = document.getElementById('check-in').textContent;
+    const checkOut = document.getElementById('check-out').innerText;
+    let checkInDate = new Date(checkIn);
+    let checkOutDate = new Date(checkOut);
+
+    checkInDate = checkInDate.toISOString();
+    checkOutDate = checkOutDate.toISOString();
+    axios
+      .get(`/api/reserve/dates/:${checkInDate}:${checkOutDate}`)
+      .then(result => {
+        return result.data;
+      })
+      .then(dates => {
+        const { locationId } = this.state;
+        axios.post(`/api/reserve/book/${this.state.locationId}`, {
+          dates,
+          locationId
+        });
+      })
+      .catch(err => {
+        throw err;
+      });
+    this.updateState();
+  }
+
   renderView() {
     if (this.state.data === null) {
       return <div> No locations </div>;
     }
-    return <Reserve loc={this.state.data} />;
+    return (
+      <div>
+        <Reserve loc={this.state.data} onClick={this.bookDates} state={this.state} />
+      </div>
+    );
   }
 
   render() {
