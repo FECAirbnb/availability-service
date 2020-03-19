@@ -13,10 +13,9 @@ Development
 Usage
 Some usage instructions:
 
-- from database dir run node index.js to add mock data to MySQL database (you will need to have MySQL istalled already).
 - npm install
-- from server dir run npm start in command line
-- from root dir npm run react-dev
+- npm start
+- npm run react-dev
 - from database dir run node createTables.js to initailize DB with mock data.
 
 Requirements:
