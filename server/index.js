@@ -7,7 +7,7 @@ const db = require('../database/index.js');
 
 const port = 3002;
 
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, '../client/public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 db.query(`USE availability;`);
