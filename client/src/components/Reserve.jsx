@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -10,6 +11,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import Calendar from './Calendar.jsx';
+// import AddGuests from './AddGuests.jsx';
 
 class Reserve extends React.Component {
   constructor(props) {
@@ -17,14 +19,18 @@ class Reserve extends React.Component {
     this.container = React.createRef();
     this.state = {
       open: false,
+      clickGuest: false,
       checkIn: 'Check in',
-      checkOut: 'Check out'
+      checkOut: 'Check out',
+      guestCount: 1
     };
 
     this.handleDropdownClick = this.handleDropdownClick.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleStatechange = this.handleStatechange.bind(this);
+    this.handleGuestCount = this.handleGuestCount.bind(this);
+    this.handleGuestDropdown = this.handleGuestDropdown.bind(this);
   }
 
   componentDidMount() {
@@ -43,10 +49,27 @@ class Reserve extends React.Component {
     });
   }
 
+  handleGuestDropdown() {
+    if (!this.state.clickGuest) {
+      this.setState(state => {
+        return {
+          clickGuest: true
+        };
+      });
+    } else {
+      this.setState(state => {
+        return {
+          clickGuest: false
+        };
+      });
+    }
+  }
+
   handleOutsideClick(e) {
     if (this.container.current && !this.container.current.contains(e.target)) {
       this.setState({
-        open: false
+        open: false,
+        clickGuest: false
       });
     }
   }
@@ -72,6 +95,48 @@ class Reserve extends React.Component {
     this.props.onClick();
   }
 
+  handleGuestCount() {
+    let guestStr = '';
+    if (this.state.guestCount === 1) {
+      guestStr = 'guest';
+    } else {
+      guestStr = 'guests';
+    }
+    return guestStr;
+  }
+
+  handleArrowChange() {
+    let arrow = '';
+    if (this.state.clickGuest === false) {
+      arrow = (
+        <img
+          src="https://image.flaticon.com/icons/png/128/566/566015.png"
+          data-src="https://image.flaticon.com/icons/png/128/566/566015.png"
+          srcSet="https://image.flaticon.com/icons/svg/566/566015.svg 4x"
+          alt="Down chevron free icon"
+          title="Down chevron free icon"
+          width="64"
+          height="64"
+          className="arrow"
+        ></img>
+      );
+    } else {
+      arrow = (
+        <img
+          src="https://image.flaticon.com/icons/png/128/566/566014.png"
+          data-src="https://image.flaticon.com/icons/png/128/566/566014.png"
+          srcSet="https://image.flaticon.com/icons/svg/566/566014.svg 4x"
+          alt="Up chevron free icon"
+          title="Up chevron free icon"
+          width="64"
+          height="64"
+          className="arrow"
+        ></img>
+      );
+    }
+    return arrow;
+  }
+
   render() {
     return (
       <div className="reserve" ref={this.container}>
@@ -93,7 +158,6 @@ class Reserve extends React.Component {
           <div id="check-out" onClick={this.handleDropdownClick}>
             {this.state.checkOut}
           </div>
-          <div className="dropdown-content"></div>
         </div>
         <div>
           {this.state.open && (
@@ -102,13 +166,23 @@ class Reserve extends React.Component {
             </div>
           )}
         </div>
-        <div className="dropdown">
-          <button className="dropbtn">1 Guest</button>
-          <div className="down-arrow">1</div>
-
-          <div className="dropdown-content">
-            <Calendar />
+        <div className="add-guest">
+          <div id="guest-count" onClick={this.handleGuestDropdown}>
+            {this.state.guestCount} {this.handleGuestCount()}
           </div>
+
+          <div id="arrow" onClick={this.handleGuestDropdown}>
+            {this.handleArrowChange()}
+          </div>
+        </div>
+        <div>
+          {this.state.clickGuest && (
+            <div className="dropdown">
+              <div>
+                <div>hello</div>
+              </div>
+            </div>
+          )}
         </div>
         <div>
           <button id="reserve-btn" type="submit" onClick={this.handleStatechange}>
