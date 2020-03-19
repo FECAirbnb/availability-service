@@ -109,9 +109,12 @@ class Reserve extends React.Component {
   handleStatechange() {
     this.setState({
       open: false,
+      clickGuest: false,
       checkIn: 'Check in',
-      checkOut: 'Check out'
+      checkOut: 'Check out',
+      guestCount: 1
     });
+
     this.props.onClick();
   }
 
