@@ -18,7 +18,6 @@ app.get('/api/reserve/:locationId', (req, res) => {
     `SELECT * FROM Location, Dates, Location_Dates WHERE Location_Dates.Location_id = Location.id AND Location_Dates.Dates_id = Dates.id AND Location.id = ${locationId};`,
     (err, data) => {
       if (err) throw err;
-
       res.json(data);
     }
   );

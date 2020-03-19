@@ -31,6 +31,8 @@ class Reserve extends React.Component {
     this.handleStatechange = this.handleStatechange.bind(this);
     this.handleGuestCount = this.handleGuestCount.bind(this);
     this.handleGuestDropdown = this.handleGuestDropdown.bind(this);
+    this.addGuests = this.addGuests.bind(this);
+    this.subGuests = this.subGuests.bind(this);
   }
 
   componentDidMount() {
@@ -61,6 +63,24 @@ class Reserve extends React.Component {
         return {
           clickGuest: false
         };
+      });
+    }
+  }
+
+  addGuests() {
+    const prevState = this.state.guestCount;
+    if (this.state.guestCount < 5) {
+      this.setState({
+        guestCount: prevState + 1
+      });
+    }
+  }
+
+  subGuests() {
+    const prevState = this.state.guestCount;
+    if (this.state.guestCount > 0) {
+      this.setState({
+        guestCount: prevState - 1
       });
     }
   }
@@ -177,10 +197,23 @@ class Reserve extends React.Component {
         </div>
         <div>
           {this.state.clickGuest && (
-            <div className="dropdown">
-              <div>
-                <div>hello</div>
+            <div className="guest-dropdown">
+              <div className="grid-item">
+                {this.state.guestCount} {this.handleGuestCount()}
               </div>
+              <div className="grid-item"></div>
+              <div className="grid-item">
+                <button className="sub-guests" onClick={this.subGuests}>
+                  -
+                </button>
+                <span className="seperator">-</span>
+                <button className="add-guests" onClick={this.addGuests}>
+                  +
+                </button>
+              </div>
+              <div className="grid-item"></div>
+              <div className="grid-item"></div>
+              <div className="grid-item"></div>
             </div>
           )}
         </div>

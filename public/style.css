@@ -60,6 +60,36 @@
   color: black;
 }
 
+.guest-dropdown {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  width: -webkit-fill-available;
+  padding: 10px;
+}
+
+.grid-item {
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.add-guests {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.seperator {
+  margin-left: 15px;
+  margin-right: 15px;
+  vertical-align: text-top;
+  color: black;
+}
+
+.sub-guests {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
 .dropdown-content {
   display: none;
   position: absolute;
