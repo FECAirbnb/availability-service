@@ -90,6 +90,33 @@
   width: 40px;
   border-radius: 50%;
 }
+
+.pricing-details {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  width: -webkit-fill-available;
+  padding: 10px;
+  border-bottom-style: ridge;
+}
+
+.total-cost {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  width: -webkit-fill-available;
+  padding: 10px;
+  border-bottom-style: ridge;
+  color: black;
+}
+
+.total-for-stay {
+  text-align-last: end;
+  color: black;
+}
+
+.cost-of-stay {
+  text-align-last: end;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -126,6 +153,15 @@
   font-family: 'Ubuntu', sans-serif;
   font-size: 20px;
   font-weight: 700;
+  color: black;
+}
+
+.star {
+  height: 12px;
+  width: 12px;
+}
+.rating {
+  color: black;
 }
 
 .per-night {
