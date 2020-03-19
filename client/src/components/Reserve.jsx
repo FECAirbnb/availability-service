@@ -273,9 +273,6 @@ class Reserve extends React.Component {
                   +
                 </button>
               </div>
-              <div className="grid-item"></div>
-              <div className="grid-item"></div>
-              <div className="grid-item"></div>
             </div>
           )}
         </div>
