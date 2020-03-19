@@ -33,6 +33,8 @@ class Reserve extends React.Component {
     this.handleGuestDropdown = this.handleGuestDropdown.bind(this);
     this.addGuests = this.addGuests.bind(this);
     this.subGuests = this.subGuests.bind(this);
+    this.numberOfDays = this.numberOfDays.bind(this);
+    this.totalCost = this.totalCost.bind(this);
   }
 
   componentDidMount() {
@@ -85,6 +87,60 @@ class Reserve extends React.Component {
     }
   }
 
+  numberOfDays() {
+    if (this.state.checkIn !== 'Check in' && this.state.checkOut !== 'Check out') {
+      const date1 = new Date(this.state.checkIn);
+      const date2 = new Date(this.state.checkOut);
+      const DifferenceInTime = date2.getTime() - date1.getTime();
+      const DifferenceInDays = DifferenceInTime / (1000 * 3600 * 24);
+      return DifferenceInDays;
+    }
+    return '';
+  }
+
+  costOfNights() {
+    const nights = this.numberOfDays();
+    return this.props.state.data[0].price * nights;
+  }
+
+  totalCost() {
+    const nights = this.numberOfDays();
+    return (
+      this.props.state.data[0].price * nights +
+      this.props.state.data[0].service_fee +
+      this.props.state.data[0].cleaning_fee
+    );
+  }
+
+  handleCostMenu() {
+    let costInfo = <div></div>;
+    if (this.state.checkOut !== 'Check out') {
+      costInfo = (
+        <div className="cost-info">
+          <div className="pricing-details">
+            <div className="price-nights">
+              ${this.props.state.data[0].price} x {this.numberOfDays()}
+            </div>
+            <div></div>
+            <div className="cost-of-stay">{this.costOfNights()}</div>
+          </div>
+          <div className="pricing-details">
+            <div className="price-nights">${this.props.state.data[0].service_fee}</div>
+          </div>
+          <div className="pricing-details">
+            <div className="price-nights">${this.props.state.data[0].cleaning_fee}</div>
+          </div>
+          <div className="total-cost">
+            <div className="price-nights">Total cost:</div>
+            <div></div>
+            <div className="total-for-stay">{this.totalCost()}</div>
+          </div>
+        </div>
+      );
+    }
+    return costInfo;
+  }
+
   handleOutsideClick(e) {
     if (this.container.current && !this.container.current.contains(e.target)) {
       this.setState({
@@ -109,9 +165,12 @@ class Reserve extends React.Component {
   handleStatechange() {
     this.setState({
       open: false,
+      clickGuest: false,
       checkIn: 'Check in',
-      checkOut: 'Check out'
+      checkOut: 'Check out',
+      guestCount: 1
     });
+
     this.props.onClick();
   }
 
@@ -165,9 +224,13 @@ class Reserve extends React.Component {
           <span className="per-night"> per night</span>
         </div>
         <div>
-          <span role="img" aria-label="Rating 1 out of 5" className="_m5wjo84">
-            4.99
-          </span>
+          <img
+            alt="Star icon"
+            src="https://img.icons8.com/material-sharp/2x/star.png"
+            className="star"
+            // style="height:24px;width:24px;"
+          ></img>
+          <span className="rating">4.99</span>
           <span className="per-night">(6 reviews)</span>
         </div>
         <div className="date-picker">
@@ -190,7 +253,6 @@ class Reserve extends React.Component {
           <div id="guest-count" onClick={this.handleGuestDropdown}>
             {this.state.guestCount} {this.handleGuestCount()}
           </div>
-
           <div id="arrow" onClick={this.handleGuestDropdown}>
             {this.handleArrowChange()}
           </div>
@@ -211,12 +273,10 @@ class Reserve extends React.Component {
                   +
                 </button>
               </div>
-              <div className="grid-item"></div>
-              <div className="grid-item"></div>
-              <div className="grid-item"></div>
             </div>
           )}
         </div>
+        {this.handleCostMenu()}
         <div>
           <button id="reserve-btn" type="submit" onClick={this.handleStatechange}>
             RESERVE

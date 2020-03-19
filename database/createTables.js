@@ -59,6 +59,8 @@ dbConnection.query(
   }
 );
 
-dbConnection.query(`INSERT INTO Location_Dates (Location_id, Dates_id) VALUES (1,1)`);
+dbConnection.query(
+  `INSERT INTO Location_Dates (Location_id, Dates_id) VALUES  (1,1), (2,1), (3,1), (4,1), (5,1), (6,1) `
+);
 
 module.exports = dbConnection;
