@@ -36,6 +36,7 @@
 
 .arrow {
   max-inline-size: fit-content;
+  margin-right: 20px;
 }
 
 #arrow {
@@ -58,6 +59,7 @@
   align-self: center;
   font-size: 20px;
   color: black;
+  margin-left: 20px;
 }
 
 .guest-dropdown {
