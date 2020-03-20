@@ -125,10 +125,12 @@ class Reserve extends React.Component {
             <div className="cost-of-stay">{this.costOfNights()}</div>
           </div>
           <div className="pricing-details">
-            <div className="price-nights">${this.props.state.data[0].service_fee}</div>
+            <div className="price-nights">${this.props.state.data[0].service_fee} Service fee</div>
           </div>
           <div className="pricing-details">
-            <div className="price-nights">${this.props.state.data[0].cleaning_fee}</div>
+            <div className="price-nights">
+              ${this.props.state.data[0].cleaning_fee} Cleaning fee
+            </div>
           </div>
           <div className="total-cost">
             <div className="price-nights">Total cost:</div>
