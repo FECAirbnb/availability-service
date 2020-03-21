@@ -173,7 +173,7 @@ class Reserve extends React.Component {
       guestCount: 1
     });
 
-    this.props.onClick();
+    this.props.onClick;
   }
 
   handleGuestCount() {

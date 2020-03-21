@@ -1,6 +1,6 @@
 /* eslint-disable no-path-concat */
 module.exports = {
-  entry: `${__dirname}/client/src/App.jsx`,
+  entry: `${__dirname}/client/src/Rendercomponents.jsx`,
   module: {
     rules: [
       {

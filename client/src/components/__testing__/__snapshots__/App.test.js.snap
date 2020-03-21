@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component renders correctly enzyme 1`] = `
+<div
+  className="main"
+>
+  <div>
+     No locations 
+  </div>
+</div>
+`;

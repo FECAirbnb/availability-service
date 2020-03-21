@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reserve component renders correctly enzyme 1`] = `
+<div
+  className="reserve"
+>
+  <div>
+    <span
+      className="price"
+    >
+      $
+      1450
+    </span>
+    <span
+      className="per-night"
+    >
+       per night
+    </span>
+  </div>
+  <div>
+    <img
+      alt="Star icon"
+      className="star"
+      src="https://img.icons8.com/material-sharp/2x/star.png"
+    />
+    <span
+      className="rating"
+    >
+      4.99
+    </span>
+    <span
+      className="per-night"
+    >
+      (6 reviews)
+    </span>
+  </div>
+  <div
+    className="date-picker"
+  >
+    <div
+      id="check-in"
+      onClick={[Function]}
+    >
+      Check in
+    </div>
+    <div
+      id="check-out"
+      onClick={[Function]}
+    >
+      Check out
+    </div>
+  </div>
+  <div />
+  <div
+    className="add-guest"
+  >
+    <div
+      id="guest-count"
+      onClick={[Function]}
+    >
+      1
+       
+      guest
+    </div>
+    <div
+      id="arrow"
+      onClick={[Function]}
+    >
+      <img
+        alt="Down chevron free icon"
+        className="arrow"
+        data-src="https://image.flaticon.com/icons/png/128/566/566015.png"
+        height="64"
+        src="https://image.flaticon.com/icons/png/128/566/566015.png"
+        srcSet="https://image.flaticon.com/icons/svg/566/566015.svg 4x"
+        title="Down chevron free icon"
+        width="64"
+      />
+    </div>
+  </div>
+  <div />
+  <div />
+  <div>
+    <button
+      id="reserve-btn"
+      onClick={[Function]}
+      type="submit"
+    >
+      RESERVE
+    </button>
+  </div>
+</div>
+`;
