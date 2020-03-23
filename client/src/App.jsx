@@ -4,7 +4,6 @@
 /* eslint-disable import/extensions */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Reserve from './components/Reserve.jsx';
 
@@ -77,7 +76,7 @@ class App extends React.Component {
     }
     return (
       <div>
-        <Reserve loc={this.state.data} onClick={this.bookDates} state={this.state} />
+        <Reserve onClick={this.bookDates} state={this.state} />
       </div>
     );
   }
@@ -87,4 +86,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('reserve'));
+export default App;

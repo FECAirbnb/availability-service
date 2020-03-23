@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -173,7 +174,7 @@ class Reserve extends React.Component {
       guestCount: 1
     });
 
-    this.props.onClick();
+    this.props.onClick;
   }
 
   handleGuestCount() {
