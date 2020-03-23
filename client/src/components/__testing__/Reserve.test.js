@@ -64,4 +64,49 @@ describe('Reserve component', () => {
       done();
     }, 1000);
   });
+
+  it('should change state clickGuest to true', () => {
+    const wrapper = shallow(<Reserve state={sampleLoc.state} />);
+    setTimeout(() => {
+      wrapper.find('button').simulate('click');
+      expect(wrapper.state('clickGuest')).toEqual(true);
+      done();
+    }, 1000);
+  });
+
+  it('should change state clickGuest to false', () => {
+    const wrapper = shallow(<Reserve state={sampleLoc.state} />);
+    setTimeout(() => {
+      wrapper.find('button').simulate('click');
+      expect(wrapper.state('clickGuest')).toEqual(false);
+      done();
+    }, 1000);
+  });
+
+  it('should change state open to true', () => {
+    const wrapper = shallow(<Reserve state={sampleLoc.state} />);
+    setTimeout(() => {
+      wrapper.find('button').simulate('click');
+      expect(wrapper.state('open')).toEqual(true);
+      done();
+    }, 1000);
+  });
+
+  it('should change state open to false', () => {
+    const wrapper = shallow(<Reserve state={sampleLoc.state} />);
+    setTimeout(() => {
+      wrapper.find('button').simulate('click');
+      expect(wrapper.state('open')).toEqual(true);
+      done();
+    }, 1000);
+  });
+
+  it('should have a default state', () => {
+    const wrapper = shallow(<Reserve state={sampleLoc.state} />);
+    expect(wrapper.state('open')).toEqual(false);
+    expect(wrapper.state('clickGuest')).toEqual(false);
+    expect(wrapper.state('checkIn')).toEqual('Check in');
+    expect(wrapper.state('checkOut')).toEqual('Check out');
+    expect(wrapper.state('guestCount')).toEqual(1);
+  });
 });
