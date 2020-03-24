@@ -68,7 +68,7 @@ describe('Reserve component', () => {
   it('should change state clickGuest to true', () => {
     const wrapper = shallow(<Reserve state={sampleLoc.state} />);
     setTimeout(() => {
-      wrapper.find('button').simulate('click');
+      wrapper.find('handleGuestDropdown').simulate('click');
       expect(wrapper.state('clickGuest')).toEqual(true);
       done();
     }, 1000);
@@ -77,7 +77,7 @@ describe('Reserve component', () => {
   it('should change state clickGuest to false', () => {
     const wrapper = shallow(<Reserve state={sampleLoc.state} />);
     setTimeout(() => {
-      wrapper.find('button').simulate('click');
+      wrapper.find('handleGuestDropdown').simulate('click');
       expect(wrapper.state('clickGuest')).toEqual(false);
       done();
     }, 1000);
@@ -95,7 +95,7 @@ describe('Reserve component', () => {
   it('should change state open to false', () => {
     const wrapper = shallow(<Reserve state={sampleLoc.state} />);
     setTimeout(() => {
-      wrapper.find('button').simulate('click');
+      wrapper.find('handleDropDown').simulate('click');
       expect(wrapper.state('open')).toEqual(true);
       done();
     }, 1000);
@@ -108,5 +108,33 @@ describe('Reserve component', () => {
     expect(wrapper.state('checkIn')).toEqual('Check in');
     expect(wrapper.state('checkOut')).toEqual('Check out');
     expect(wrapper.state('guestCount')).toEqual(1);
+  });
+
+  it('should checkIn state to selected date.', () => {
+    const wrapper = shallow(<Reserve state={sampleLoc.state} />);
+    setTimeout(() => {
+      wrapper.find('button').simulate('click');
+      expect(wrapper.state('checkIn')).toEqual('3/15/2020');
+      done();
+    }, 1000);
+  });
+
+  it('should checkOut state to selected date.', () => {
+    const wrapper = shallow(<Reserve state={sampleLoc.state} />);
+    setTimeout(() => {
+      wrapper.find('button').simulate('click');
+      expect(wrapper.state('checkOut')).toEqual('3/21/2020');
+      done();
+    }, 1000);
+  });
+
+  it('should provide the total cost menu', () => {
+    const wrapper = shallow(<Reserve state={sampleLoc.state} />);
+    wrapper.find('handleCostMenu').exists();
+  });
+
+  it('should provide number of days', () => {
+    const wrapper = shallow(<Reserve state={sampleLoc.state} />);
+    wrapper.find('numberOfDays').exists();
   });
 });
