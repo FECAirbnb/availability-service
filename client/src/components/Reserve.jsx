@@ -175,6 +175,7 @@ class Reserve extends React.Component {
     });
 
     this.props.onClick;
+    window.location.reload();
   }
 
   handleGuestCount() {
