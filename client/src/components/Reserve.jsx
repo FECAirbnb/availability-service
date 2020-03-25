@@ -12,6 +12,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import Calendar from './Calendar.jsx';
+import styles from '../style.module.css';
 // import AddGuests from './AddGuests.jsx';
 
 class Reserve extends React.Component {
@@ -117,26 +118,28 @@ class Reserve extends React.Component {
     let costInfo = <div></div>;
     if (this.state.checkOut !== 'Check out') {
       costInfo = (
-        <div className="cost-info">
-          <div className="pricing-details">
-            <div className="price-nights">
+        <div className={styles['cost-info']}>
+          <div className={styles['pricing-details']}>
+            <div className={styles['price-nights']}>
               ${this.props.state.data[0].price} x {this.numberOfDays()}
             </div>
             <div></div>
-            <div className="cost-of-stay">{this.costOfNights()}</div>
+            <div className={styles['cost-of-stay']}>{this.costOfNights()}</div>
           </div>
-          <div className="pricing-details">
-            <div className="price-nights">${this.props.state.data[0].service_fee} Service fee</div>
+          <div className={styles['pricing-details']}>
+            <div className={styles['price-nights']}>
+              ${this.props.state.data[0].service_fee} Service fee
+            </div>
           </div>
-          <div className="pricing-details">
-            <div className="price-nights">
+          <div className={styles['pricing-details']}>
+            <div className={styles['price-nights']}>
               ${this.props.state.data[0].cleaning_fee} Cleaning fee
             </div>
           </div>
-          <div className="total-cost">
-            <div className="price-nights">Total cost:</div>
+          <div className={styles['total-cost']}>
+            <div className={styles['price-nights']}>Total cost:</div>
             <div></div>
-            <div className="total-for-stay">{this.totalCost()}</div>
+            <div className={styles['total-for-stay']}>{this.totalCost()}</div>
           </div>
         </div>
       );
@@ -200,7 +203,7 @@ class Reserve extends React.Component {
           title="Down chevron free icon"
           width="64"
           height="64"
-          className="arrow"
+          className={styles.arrow}
         ></img>
       );
     } else {
@@ -213,7 +216,7 @@ class Reserve extends React.Component {
           title="Up chevron free icon"
           width="64"
           height="64"
-          className="arrow"
+          className={styles.arrow}
         ></img>
       );
     }
@@ -222,58 +225,58 @@ class Reserve extends React.Component {
 
   render() {
     return (
-      <div className="reserve" ref={this.container}>
+      <div className={styles.reserve} ref={this.container}>
         <div>
-          <span className="price">${this.props.state.data[0].price}</span>
-          <span className="per-night"> per night</span>
+          <span className={styles.price}>${this.props.state.data[0].price}</span>
+          <span className={styles['per-night']}> per night</span>
         </div>
         <div>
           <img
             alt="Star icon"
             src="https://img.icons8.com/material-sharp/2x/star.png"
-            className="star"
+            className={styles.star}
             // style="height:24px;width:24px;"
           ></img>
-          <span className="rating">4.99</span>
-          <span className="per-night">(6 reviews)</span>
+          <span className={styles.rating}>4.99</span>
+          <span className={styles['per-night']}>(6 reviews)</span>
         </div>
-        <div className="date-picker">
-          <div id="check-in" onClick={this.handleDropdownClick}>
+        <div className={styles['date-picker']}>
+          <div id={styles['check-in']} onClick={this.handleDropdownClick}>
             {this.state.checkIn}
           </div>
 
-          <div id="check-out" onClick={this.handleDropdownClick}>
+          <div id={styles['check-out']} onClick={this.handleDropdownClick}>
             {this.state.checkOut}
           </div>
         </div>
         <div>
           {this.state.open && (
-            <div className="dropdown">
+            <div className={styles.dropdown}>
               <Calendar state={this.props.state} handleDateChange={this.handleDateChange} />
             </div>
           )}
         </div>
-        <div className="add-guest">
-          <div id="guest-count" onClick={this.handleGuestDropdown}>
+        <div className={styles['add-guest']}>
+          <div id={styles['guest-count']} onClick={this.handleGuestDropdown}>
             {this.state.guestCount} {this.handleGuestCount()}
           </div>
-          <div id="arrow" onClick={this.handleGuestDropdown}>
+          <div id={styles.arrow} onClick={this.handleGuestDropdown}>
             {this.handleArrowChange()}
           </div>
         </div>
         <div>
           {this.state.clickGuest && (
-            <div className="guest-dropdown">
-              <div className="grid-item">
+            <div className={styles['guest-dropdown']}>
+              <div className={styles['grid-item']}>
                 {this.state.guestCount} {this.handleGuestCount()}
               </div>
-              <div className="grid-item"></div>
-              <div className="grid-item">
-                <button className="sub-guests" onClick={this.subGuests}>
+              <div className={styles['grid-item']}></div>
+              <div className={styles['grid-item']}>
+                <button className={styles['sub-guests']} onClick={this.subGuests}>
                   -
                 </button>
-                <span className="seperator">-</span>
-                <button className="add-guests" onClick={this.addGuests}>
+                <span className={styles.seperator}>-</span>
+                <button className={styles['add-guests']} onClick={this.addGuests}>
                   +
                 </button>
               </div>
@@ -282,7 +285,7 @@ class Reserve extends React.Component {
         </div>
         {this.handleCostMenu()}
         <div>
-          <button id="reserve-btn" type="submit" onClick={this.handleStatechange}>
+          <button id={styles['reserve-btn']} type="submit" onClick={this.handleStatechange}>
             RESERVE
           </button>
         </div>

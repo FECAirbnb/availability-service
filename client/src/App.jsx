@@ -6,6 +6,7 @@
 import React from 'react';
 import axios from 'axios';
 import Reserve from './components/Reserve.jsx';
+import styles from './style.module.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -82,7 +83,7 @@ class App extends React.Component {
   }
 
   render() {
-    return <div className="main">{this.renderView()}</div>;
+    return <div className={styles.main}>{this.renderView()}</div>;
   }
 }
 

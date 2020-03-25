@@ -12,14 +12,14 @@
 
 #check-in {
   text-align-last: left;
-  padding: 20px;
-  font-size: 30px;
+  padding: 10px;
+  font-size: 20px;
   flex: auto;
 }
 
 #check-out {
-  padding: 20px;
-  font-size: 30px;
+  padding: 10px;
+  font-size: 20px;
   text-align: center;
   flex: auto;
   text-align-last: end;
@@ -37,10 +37,13 @@
 .arrow {
   max-inline-size: fit-content;
   margin-right: 20px;
+  width: 30px;
+  height: 30px;
 }
 
 #arrow {
   text-align: center;
+  text-align: -webkit-right;
   flex: auto;
   text-align-last: end;
 }
@@ -75,7 +78,7 @@
   text-align: center;
 }
 
-.add-guests {
+.addguests {
   height: 40px;
   width: 40px;
   border-radius: 50%;
