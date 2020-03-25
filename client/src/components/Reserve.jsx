@@ -107,11 +107,11 @@ class Reserve extends React.Component {
 
   totalCost() {
     const nights = this.numberOfDays();
-    return (
+    const total =
       this.props.state.data[0].price * nights +
       this.props.state.data[0].service_fee +
-      this.props.state.data[0].cleaning_fee
-    );
+      this.props.state.data[0].cleaning_fee;
+    return `$ ${total}`;
   }
 
   handleCostMenu() {
@@ -177,7 +177,7 @@ class Reserve extends React.Component {
       guestCount: 1
     });
 
-    this.props.onClick;
+    this.props.onClick();
     window.location.reload();
   }
 
@@ -235,17 +235,16 @@ class Reserve extends React.Component {
             alt="Star icon"
             src="https://img.icons8.com/material-sharp/2x/star.png"
             className={styles.star}
-            // style="height:24px;width:24px;"
           ></img>
           <span className={styles.rating}>4.99</span>
           <span className={styles['per-night']}>(6 reviews)</span>
         </div>
         <div className={styles['date-picker']}>
-          <div id={styles['check-in']} onClick={this.handleDropdownClick}>
+          <div id="check-in" onClick={this.handleDropdownClick}>
             {this.state.checkIn}
           </div>
 
-          <div id={styles['check-out']} onClick={this.handleDropdownClick}>
+          <div id="check-out" onClick={this.handleDropdownClick}>
             {this.state.checkOut}
           </div>
         </div>
@@ -267,7 +266,7 @@ class Reserve extends React.Component {
         <div>
           {this.state.clickGuest && (
             <div className={styles['guest-dropdown']}>
-              <div className={styles['grid-item']}>
+              <div className={styles['guest-item']}>
                 {this.state.guestCount} {this.handleGuestCount()}
               </div>
               <div className={styles['grid-item']}></div>

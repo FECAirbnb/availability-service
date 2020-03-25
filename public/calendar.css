@@ -1,4 +1,24 @@
 /* VARIABLES */
+#reserve {
+  margin: 5%;
+  width: 310px;
+  float: right;
+}
+
+#check-in {
+  text-align-last: left;
+  padding: 10px;
+  font-size: 20px;
+  flex: auto;
+}
+
+#check-out {
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  flex: auto;
+  text-align-last: end;
+}
 
 :root {
   --main-color: #1a8fff;
@@ -93,7 +113,7 @@ main {
 .calendar {
   display: block;
   position: relative;
-  width: 100%;
+  width: 500px;
   background: var(--neutral-color);
   border: 1px solid var(--border-color);
 }
