@@ -10,8 +10,8 @@
   "scripts": {
     "test": "jest --verbose",
     "eslint-check": "eslint --print-config path/to/main.js | eslint-config-prettier-check",
-    "start": "nodemon ./server/index.js",
-    "react-dev": "webpack -d --watch",
+    "start": "node ./database/createTables.js && webpack -d && node ./server/index.js",
+    "react-dev": "webpack -d",
     "db:setup": "node ./database/createTables.js",
     "coverage": "jest --coverage"
   },

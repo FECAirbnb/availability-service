@@ -50,4 +50,4 @@ app.post('/api/reserve/book/:locationId', (req, res) => {
   res.end();
 });
 
-app.listen(port);
+app.listen(port, () => console.log(`App listening on port ${port}!`));

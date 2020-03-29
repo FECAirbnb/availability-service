@@ -1,14 +1,19 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-shadow */
 const mysql = require('mysql2');
 
 const dbConnection = mysql.createConnection({
+  host: 'database',
   user: 'root',
-  password: 'password'
+  password: 'password',
+  port: '3306'
 });
 
 dbConnection.connect(err => {
   if (err) {
     throw err;
+  } else {
+    console.log('connected');
   }
 });
 
