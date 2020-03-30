@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-shadow */
-const mysql = require('mysql2');
+const mysql = require('mysql');
 
 const dbConnection = mysql.createConnection({
   host: 'database',

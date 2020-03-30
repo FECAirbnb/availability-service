@@ -6,7 +6,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
     expose:
       - 3306
-    image: mysql:latest
+    image: mysql:5.7
 
   app:
     build:
@@ -15,8 +15,6 @@ services:
     depends_on:
       - 'database'
     restart: on-failure
-    volumes:
-      - '.:/app'
     ports:
       - 3002:3002
     command: npm start
