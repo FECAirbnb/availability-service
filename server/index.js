@@ -44,6 +44,7 @@ app.post('/api/reserve/book/:locationId', (req, res) => {
   const { locationId } = req.body;
   selectedDates.forEach(date => {
     db.query(
+      //add query arguments
       `REPLACE INTO Location_Dates (Location_id, Dates_id) VALUES (${locationId}, ${date.id})`
     );
   });
